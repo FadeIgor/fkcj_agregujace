@@ -1,0 +1,54 @@
+1. Ile produktow jest w każdej z kategorii
+2. Ile produktow dostarcza każdy z dostawców
+3. Ile razy dokonał zamówienia każdy klient
+4. Ile razy dokonał zamówienia każdy klient, uwzględniając tylko tych, którzy zamówienie realizowali mniej niż 30 razy
+5. Ile razy dokonał zamówienia każdy klient w grudniu 2012.
+6. Wyświetl najtańszy produkt w bazie.
+7. Kwota (suma) zamówień poszeczególnych klientów
+8. Kwota (suma) zamówień poszczególnych klientów z września 2012, posortowana wg wartości
+9. Kwota (suma) zamówień poszczególnych klientów, uwzględniając tylko sumę powyżej 200k
+10. Suma sprzedaży wg produktów
+11. Średnia wartość zamówień we wrześniu 2012
+
+1 
+SELECT kategorie.OpisKategorii, COUNT(produkty.IDKategorii)
+	FROM kategorie
+    INNER JOIN produkty
+    	on kategorie.IDKategorii = produkty.IDKategorii
+GROUP BY kategorie.IDKategorii;
+
+2
+SELECT dostawcy.NazwaDostawcy, COUNT(dostawcy_produktow.NumerProduktu)
+
+FROM dostawcy
+	INNER JOIN dostawcy_produktow
+    ON dostawcy.IDDostawcy = dostawcy_produktow.IDDostawcy
+GROUP BY dostawcy.NazwaDostawcy;
+
+3
+SELECT klienci.ImieKlienta, klienci.NazwiskoKlienta, COUNT(zamowienia.IDKlienta)
+FROM klienci
+	INNER JOIN zamowienia
+    	ON klienci.IDKlienta = zamowienia.IDKlienta
+GROUP BY klienci.IDKlienta;
+
+4
+SELECT klienci.ImieKlienta, klienci.NazwiskoKlienta, COUNT(zamowienia.IDKlienta) AS ilosc
+FROM klienci
+	INNER JOIN zamowienia
+    	ON klienci.IDKlienta = zamowienia.IDKlienta
+GROUP BY klienci.IDKlienta
+HAVING ilosc<=30;
+
+5
+SELECT klienci.ImieKlienta, klienci.NazwiskoKlienta, zamowienia.DataZamowienia, COUNT(zamowienia.IDKlienta) AS ilosc
+FROM klienci
+	INNER JOIN zamowienia
+    	ON klienci.IDKlienta = zamowienia.IDKlienta
+WHERE zamowienia.DataZamowienia BETWEEN '2012-12-01' AND '2012-12-31'
+GROUP BY klienci.IDKlienta;
+
+6
+SELECT produkty.NazwaProduktu, produkty.CenaDetaliczna
+FROM produkty
+WHERE produkty.CenaDetaliczna = (SELECT MIN(produkty.CenaDetaliczna) FROM produkty);

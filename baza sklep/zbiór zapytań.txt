@@ -1,0 +1,31 @@
+#1. Wybierz wszystkie informacje o klientach, którzy mieszkają w El Paso.
+#2. Wybierz imię, nazwisko i telefon klientów, których kody pocztowe nie zaczynają się na cyfrę 9.
+#3. Wybierz numery i nazwy produktów marki "Shinoman".
+#4. Wybierz nazwiska pracowników, posortowane odwrotnie alfabetycznie.
+#5. Wybierz produkty, których cena detaliczna jest niższa niż 40 zł, wyniki posortuj malejąco wg kwot i ogranicz ich liczbę do 10.
+#6. Wybierz wszystkie informacje o klientach, których nazwiska kończą się na literę „K” lub "Y".
+#7. Wybierz wszystkie informacje o produktach z kategorii o ID 3.
+#8. Wybierz daty zamówień, które miały miejsce w październiku 2012 roku.
+9. Wyświetl informacje o ilości produktów jest w każdej z kategorii.
+10. Wyświetl informacje ile produktów dostarcza każdy z dostawców.
+11. Wyświetl informacje ile razy dokonał zamówienia każdy klient.
+12. Wyświetl informacje ile razy dokonał zamówienia każdy klient, uwzględniając tylko tych, którzy zamówienie realizowali mniej niż 30 razy.
+13. Wyświetl informacje ile razy dokonał zamówienia każdy klient w grudniu 2012.
+14. Wyświetl kwotę (sumę) zamówień poszczególnych klientów z września 2012, posortowaną malejąco wg wartości.
+15. Wyświetl kwotę (sumę) zamówień poszczególnych klientów, uwzględniając tylko sumę powyżej 200k.
+16. Wyświetl kwotę (sumę) sprzedaży wg produktów.
+17. Wyświetl zaokrągloną do dwóch miejsc po przecinku średnią wartość zamówień we wrześniu 2012.
+18. Wyświetl informacje o najtańszych produktach w bazie (nazwa, cena).
+19. Policz ile razy dokonywano zamówienia na jeden produkt w dowolnej ilości.
+20. Wyświetl informacje o klientach (imię i nazwisko), którzy nigdy nie kupili roweru (imię, nazwisko).
+21. Wyświetl numer zamówienia oraz czas realizacji.
+22. Wyświetl wszystkie nazwy produktów znajdujących się w bazie z dopiskiem czy były zamówione w okresie od 21 do 23 grudnia 2012 (dodatkową kolumną zawierającą tekst 'zamówione'/'niezamówione').
+23. Wyświetl w jednej kolumnie imiona i nazwiska klientów, zmieniając ostatnią literę imienia i nazwiska na wielką.
+24. Dodaj do tabeli klienci kolumnę "charakterystyka" pozwalającą dodać tekst o długości do 255 znaków.
+25. Dodaj do tabeli pracownicy kolumnę pozwalającą wpisać ocenę pracownika w zakresie od 0 do 10.
+26. Dodaj do tabeli pracownicy nowego pracownika o imieniu Donald i nazwisku Pułtusk.
+27. Utwórz widok "all_data" z tabel klienci, pracownicy, dostawcy zawierający: nazwę (w przypadku klientów i pracowników imię i nazwisko), adres, miasto, numer telefonu, wraz z informacją czy dany podmiot jest klientem, pracownikiem, czy dostawcą.
+28. Wyświetl numery zamówień, w ramach których zakupiono zarówno licznik jak i opone.
+29. Usuń pierwszego klienta z bazy.
+30. Dodaj lokalnego użytkownika master_all z hasłem kaczor, który ma pełne prawa do bazy.
+31. Dodaj lokalnego użytkownika master_select z hasłem donald, który ma prawa do wyświetlania rekordów z bazy.
