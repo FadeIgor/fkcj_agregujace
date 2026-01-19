@@ -1,3 +1,4 @@
+1.1
 SELECT 
 	klasy_samochodow.nazwa_klasy, 
 	COUNT(samochody.id_klasy) AS ilosc 
@@ -6,7 +7,7 @@ FROM klasy_samochodow
     	ON samochody.id_klasy = klasy_samochodow.id_klasy
 GROUP by klasy_samochodow.nazwa_klasy;
 
-2
+1.2
 CREATE VIEW ILOSC_AUT_W_KLASIE AS (
 SELECT 
 	klasy_samochodow.nazwa_klasy, 
@@ -15,3 +16,15 @@ FROM klasy_samochodow
 	INNER JOIN samochody
     	ON samochody.id_klasy = klasy_samochodow.id_klasy
 GROUP by klasy_samochodow.nazwa_klasy);
+
+3
+
+SELECT 
+	klienci.imie_klienta, 
+    klienci.nazwisko_klienta, 
+    COUNT(wypozyczenia.id_klienta) as ilosc
+FROM
+	klienci
+    INNER JOIN wypozyczenia
+    ON wypozyczenia.id_klienta = klienci.id_klienta
+GROUP by klienci.id_klienta;
