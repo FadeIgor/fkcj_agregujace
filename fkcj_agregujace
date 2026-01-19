@@ -1,4 +1,4 @@
-1.1
+1.1 wyswietl klasy samochodow oraz ilosc samochodow w danej klasie
 SELECT 
 	klasy_samochodow.nazwa_klasy, 
 	COUNT(samochody.id_klasy) AS ilosc 
@@ -17,7 +17,7 @@ FROM klasy_samochodow
     	ON samochody.id_klasy = klasy_samochodow.id_klasy
 GROUP by klasy_samochodow.nazwa_klasy);
 
-3
+3 podaj imiona i nazwiska klientow oraz liczbe wypozyczen
 
 SELECT 
 	klienci.imie_klienta, 
