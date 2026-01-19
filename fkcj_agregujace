@@ -5,3 +5,13 @@ FROM klasy_samochodow
 	INNER JOIN samochody
     	ON samochody.id_klasy = klasy_samochodow.id_klasy
 GROUP by klasy_samochodow.nazwa_klasy;
+
+2
+CREATE VIEW ILOSC_AUT_W_KLASIE AS (
+SELECT 
+	klasy_samochodow.nazwa_klasy, 
+	COUNT(samochody.id_klasy) AS ilosc 
+FROM klasy_samochodow
+	INNER JOIN samochody
+    	ON samochody.id_klasy = klasy_samochodow.id_klasy
+GROUP by klasy_samochodow.nazwa_klasy);
