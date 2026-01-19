@@ -28,3 +28,5 @@ FROM
     INNER JOIN wypozyczenia
     ON wypozyczenia.id_klienta = klienci.id_klienta
 GROUP by klienci.id_klienta;
+
+ORDER BY RAND() - sortuj losowo
