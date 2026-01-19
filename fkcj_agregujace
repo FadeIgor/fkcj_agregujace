@@ -17,7 +17,7 @@ FROM klasy_samochodow
     	ON samochody.id_klasy = klasy_samochodow.id_klasy
 GROUP by klasy_samochodow.nazwa_klasy);
 
-3 podaj imiona i nazwiska klientow oraz liczbe wypozyczen
+2 podaj imiona i nazwiska klientow oraz liczbe wypozyczen
 
 SELECT 
 	klienci.imie_klienta, 
@@ -30,3 +30,43 @@ FROM
 GROUP by klienci.id_klienta;
 
 ORDER BY RAND() - sortuj losowo
+
+3.1 wyswietlenie aut o min cena
+SELECT
+	samochody.id_samochodu,
+    samochody.marka,
+    samochody.model,
+    samochody.cena_katalogowa
+FROM samochody
+	WHERE samochody.cena_katalogowa = (SELECT MIN(samochody.cena_katalogowa) FROM samochody);                                       
+
+3.2 max cena
+SELECT
+	samochody.id_samochodu,
+    samochody.marka,
+    samochody.model,
+    samochody.cena_katalogowa
+FROM samochody
+	WHERE samochody.cena_katalogowa = (SELECT MAX(samochody.cena_katalogowa) FROM samochody);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
