@@ -1,0 +1,65 @@
+1. Ile produktow jest w każdej z kategorii
+SELECT kategorie.OpisKategorii, COUNT(produkty.IDKategorii) 
+FROM kategorie
+JOIN produkty
+on produkty.IDKategorii = kategorie.IDKategorii
+GROUP BY kategorie.OpisKategorii;
+
+2. Ile produktow dostarcza każdy z dostawców
+3. Ile razy dokonał zamówienia każdy klient
+4. Ile razy dokonał zamówienia każdy klient, uwzględniając tylko tych, którzy zamówienie realizowali mniej niż 30 razy
+5. Ile razy dokonał zamówienia każdy klient w grudniu 2012.
+6. Wyświetl najtańszy produkt w bazie.
+7. Kwota (suma) zamówień poszeczególnych klientów.
+	7.1 Kwota (suma) zamówień poszczególnych klientów z września 2012, posortowana wg wartości
+SELECT klienci.IDKlienta, klienci.ImieKlienta, klienci.NazwiskoKlienta, SUM(dane_zamowien.CenaZakupu*dane_zamowien.ZamowionaIlosc) 
+FROM klienci
+JOIN zamowienia
+ON  zamowienia.IDKlienta = klienci.IDKlienta
+JOIN dane_zamowien
+ON dane_zamowien.NumerZamowienia = zamowienia.NumerZamowienia
+WHERE zamowienia.DataZamowienia BETWEEN '2012-09-01' AND '2012-09-31'
+GROUP BY klienci.IDKlienta  
+ORDER BY SUM(dane_zamowien.CenaZakupu) DESC
+
+
+	7.2 Kwota (suma) zamówień poszczególnych klientów, uwzględniając tylko sumę powyżej 200k
+
+SELECT klienci.IDKlienta, klienci.ImieKlienta, klienci.NazwiskoKlienta, SUM(dane_zamowien.CenaZakupu*dane_zamowien.ZamowionaIlosc) as suma
+FROM klienci
+JOIN zamowienia
+ON  zamowienia.IDKlienta = klienci.IDKlienta
+JOIN dane_zamowien
+ON dane_zamowien.NumerZamowienia = zamowienia.NumerZamowienia
+GROUP BY klienci.IDKlienta  
+HAVING suma > 200000;
+
+8. Kwota (suma) zamówień obsłużonych przez poszeczególnych pracowników.
+SELECT pracownicy.IDPracownika, pracownicy.ImiePracownika, pracownicy.NazwiskoPracownika, SUM(dane_zamowien.CenaZakupu) as suma
+FROM pracownicy
+JOIN zamowienia
+ON  zamowienia.IDPracownika = pracownicy.IDPracownika
+JOIN dane_zamowien
+ON dane_zamowien.NumerZamowienia = zamowienia.NumerZamowienia
+GROUP BY pracownicy.IDPracownika;
+
+
+9. Kwota (suma) zamówień z poszczególnych dni.
+SELECT zamowienia.DataZamowienia, SUM(dane_zamowien.CenaZakupu*dane_zamowien.ZamowionaIlosc) as suma
+FROM zamowienia
+JOIN dane_zamowien
+ON dane_zamowien.NumerZamowienia = zamowienia.NumerZamowienia
+GROUP BY zamowienia.DataZamowienia;
+
+10. Suma sprzedaży wg produktów
+SELECT produkty.NazwaProduktu, SUM(dane_zamowien.CenaZakupu*dane_zamowien.ZamowionaIlosc) as suma
+FROM dane_zamowien
+JOIN produkty
+ON dane_zamowien.NumerProduktu = produkty.NumerProduktu
+GROUP BY produkty.NazwaProduktu;
+
+11. Średnia wartość zamówień we wrześniu 2012
+SELECT AVG(tabela.suma) FROM
+(SELECT SUM(dane_zamowien.CenaZakupu*dane_zamowien.ZamowionaIlosc) AS suma
+FROM dane_zamowien
+GROUP BY dane_zamowien.NumerZamowienia) AS tabela;
